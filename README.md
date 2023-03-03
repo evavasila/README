@@ -3,6 +3,16 @@
 Στην σελίδα My Cities Manager μου ζητήθηκε να προσθέσω την δυνατότητα εισαγωγής πολυγώνων σε έναν χάρτη του google maps API.Πατώντας το κουμπί "CREATE POLYGON" ο χρήστης  μεταφέρεται σε έναν χάρτη του google maps API στον οποίο μπορεί να ζωγραφίσει ένα πολύγωνο. Το πολύγωνο αυτό είναι απαραίτητο να ξεκινάει και να τελειώνει με τα ίδια points διαφορετικά δεν θα μπορεί να σχηματιστεί. Παίρνουμε ,λοιπόν, τα points και στη συνέχεια αποθηκεύεται το πολύγωνο σε έναν πίνακα στο database.
 - Αρχικά, φτιάχνουμε το αρχείο polygon.html όπου περιέχει τις συναρτήσεις για την εμφάνιση του χάρτη,την επιλογή σχεδίασης πολυγώνου και την επιστροφή αυτού σε έναν πίνακα.(https://pleiades.math.uoi.gr/~ma11882/tasks/task1/polygon.html)
 
+**Συνάρτηση εμφάνισης χάρτη**
+```
+function myMap() {
+	var mapCanvas=document.getElementById("map");
+	var mapOptions={
+		center:new google.maps.LatLng(39.6650288, 20.8537466),
+		zoom:15,
+		mapTypeId:google.maps.MapTypeId.HYBRID
+	}
+```
 **Συνάρτηση σχεδίασης πολυγώνου**
 ```
 var drawingManager= new google.maps.drawing.DrawingManager({
@@ -46,7 +56,7 @@ var drawingManager= new google.maps.drawing.DrawingManager({
 $polygon_table="CREATE TABLE TBL_polygon (".
 "ID INT NOT NULL AUTO_INCREMENT,".
 "geometry POLYGON NOT NULL,".
-"PRIMARY KEY (Id)".
+"PRIMARY KEY (ID)".
 ")";
 ```
 - Τέλος, φτιάχνουμε το αρχείο polygon.php που εξασφαλίζει την σύνδεση στη mysql και εισαγωγή των σχεδιασμένων πολυγώνων στον πίνακα της βάσης
